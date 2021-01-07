@@ -11,7 +11,7 @@ public class GridStructureTests
     [OneTimeSetUp]
     public void init()
     {
-        gridStructure = new GridStructure(3);
+        gridStructure = new GridStructure(3, 100, 100);
     }
     
     
@@ -31,6 +31,23 @@ public class GridStructureTests
         // Arrange
         Vector3 inputPosition = new Vector3(x, y, z);
         Vector3 expectedPosition = new Vector3(0,0,0);
+
+        // Act
+        Vector3 returnedPosition = gridStructure.CalculateGridPosition(inputPosition);
+        
+        // Assert
+        Assert.AreEqual(expectedPosition, returnedPosition);
+    }
+    
+    [Test]
+    public void CalculateGridPosition_3_Pass(
+        [Random(3f,5.9f,5)] float x,
+        [Random(3f,5.9f,5)] float y,
+        [Random(3f,5.9f,5)] float z )
+    {
+        // Arrange
+        Vector3 inputPosition = new Vector3(x, y, z);
+        Vector3 expectedPosition = new Vector3(3,0,3);
 
         // Act
         Vector3 returnedPosition = gridStructure.CalculateGridPosition(inputPosition);
@@ -74,17 +91,28 @@ public class GridStructureTests
     }
     
     [Test]
-    public void CalculateGridPosition_3_Pass(
-        [Random(3f,5.9f,5)] float x,
-        [Random(3f,5.9f,5)] float y,
-        [Random(3f,5.9f,5)] float z )
+    public void CalculateGridIndex_1_Pass()
     {
         // Arrange
-        Vector3 inputPosition = new Vector3(x, y, z);
-        Vector3 expectedPosition = new Vector3(3,0,3);
+        Vector3 inputPosition = new Vector3(3, 3, 3);
+        Vector2Int expectedPosition = new Vector2Int(1,1);
 
         // Act
-        Vector3 returnedPosition = gridStructure.CalculateGridPosition(inputPosition);
+        Vector2Int returnedPosition = gridStructure.CalculateGridIndex(inputPosition);
+        
+        // Assert
+        Assert.AreEqual(expectedPosition, returnedPosition);
+    }
+    
+    [Test]
+    public void IsCellTaken_False_Pass()
+    {
+        // Arrange
+        Vector3 inputPosition = new Vector3(3, 3, 3);
+        Vector2Int expectedPosition = new Vector2Int(1,1);
+
+        // Act
+        Vector2Int returnedPosition = gridStructure.CalculateGridIndex(inputPosition);
         
         // Assert
         Assert.AreEqual(expectedPosition, returnedPosition);

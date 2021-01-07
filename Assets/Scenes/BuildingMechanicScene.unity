@@ -793,6 +793,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementManager: {fileID: 2138790055}
   inputManager: {fileID: 278601232}
+  width: 100
+  length: 100
 --- !u!1 &2138273744
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 8435803254977915761, guid: 8d0ddc33a9dc29442b5291be639906fb, type: 3}
-  groundTransform: {fileID: 0}
+  groundTransform: {fileID: 1459709686}
 --- !u!4 &2138790056
 Transform:
   m_ObjectHideFlags: 0
